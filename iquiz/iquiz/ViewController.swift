@@ -22,7 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBAction func btnSettings(_ sender: Any) {
-        let uiAlert = UIAlertController(title: "Sorry", message: "Settings under development...", preferredStyle: .alert)
+        let uiAlert = UIAlertController(title: "Sorry", message: "Check back for settings!", preferredStyle: .alert)
         uiAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(uiAlert, animated: true, completion: nil)
     }
