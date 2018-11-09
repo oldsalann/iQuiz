@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iquiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="iquiz" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -82,21 +82,22 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="0E5-nO-J91" id="utT-lu-Yv9"/>
+                        <segue destination="402-3I-ahv" kind="presentation" identifier="segueGoToQuestion" id="DLu-A1-TeT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
-        <!--View Controller-->
+        <!--Question View Controller-->
         <scene sceneID="X6s-Xs-7T8">
             <objects>
-                <viewController id="402-3I-ahv" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuestionViewController" id="402-3I-ahv" customClass="QuestionViewController" customModule="iquiz" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FZV-wb-dgc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Question?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="oIH-Wh-xfo">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Question?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="oIH-Wh-xfo">
                                 <rect key="frame" x="16" y="20" width="343" height="127"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -118,6 +119,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="qyb-Iv-Pe2"/>
                     </view>
+                    <connections>
+                        <outlet property="question" destination="oIH-Wh-xfo" id="1CJ-mA-2yJ"/>
+                        <outlet property="tableView" destination="grQ-ym-2rj" id="aTq-Zc-TCh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N0m-YU-Lbc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -17,12 +17,21 @@ class ViewController: UIViewController, UITableViewDelegate {
         tableView.dataSource = dataSource
         tableView.delegate = self
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier! {
+        case "segueGoToQuestion":
+            //let source = segue.source as! ViewController
+            let destination = segue.destination as! QuestionViewController
+            destination.setIncomingText(incoming: quizData!)
+        default:
+            NSLog("Unknown segue identifier -- " + segue.identifier!)
+        }
+    }
+    var quizData : Quiz? = nil
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = indexPath.section
         let row = indexPath.row
-        let quizList : QuizList
-        var quizData : Quiz
+        let quizList = QuizList()
         if section == 0 {
             quizData = quizList.soccer[row]
         } else if section == 1 {
@@ -30,9 +39,8 @@ class ViewController: UIViewController, UITableViewDelegate {
         } else if (section == 2) {
             quizData = quizList.videogames[row]
         }
-        let uiAlert = UIAlertController(title: "You selected", message: name, preferredStyle: .alert)
-        uiAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(uiAlert, animated: true, completion: nil)
+        NSLog((quizData?.answers[0])!)
+        performSegue(withIdentifier: "segueGoToQuestion", sender: self)
     }
     
     let dataSource = QuizDataSource(quizList: QuizList())
@@ -64,12 +72,12 @@ class Quiz {
 }
 
 class QuizList : UIViewController {
-    var soccer = [Quiz(image: UIImage(named: "soccer.jpeg"), title: "What soccer player are you?", description: "Find out which player you are.", answers: ["1", "2", "3", "4"], correct: 1),
-                  Quiz(image: UIImage(named: "soccer.jpeg"), title: "Do you know your teams?", description: "Test your knowledge!", answers: ["1", "2", "3", "4"], correct: 1)]
-    var basketball = [Quiz(image: UIImage(named: "basket.jpg"), title: "What basketball player are you?", description: "Find out which player you are.", answers: ["1", "2", "3", "4"], correct: 1),
-                      Quiz(image: UIImage(named: "basket.jpg"), title: "Do you know your teams?", description: "Test your knowledge!", answers: ["1", "2", "3", "4"], correct: 1)]
-    var videogames = [Quiz(image: UIImage(named: "video.jpeg"), title: "Which videogame character are you?", description: "Find out which player you are.", answers: ["1", "2", "3", "4"], correct: 1),
-                      Quiz(image: UIImage(named: "video.jpeg"), title: "Do you know your videogames?", description: "Test your gaming knowledge!", answers: ["1", "2", "3", "4"], correct: 1)]
+    var soccer = [Quiz(image: UIImage(named: "soccer.jpeg"), title: "What soccer player are you?", description: "Find out which player you are.", answers: ["soc1", "2", "3", "4"], correct: 1),
+                  Quiz(image: UIImage(named: "soccer.jpeg"), title: "Do you know your teams?", description: "Test your knowledge!", answers: ["soc2", "2", "3", "4"], correct: 1)]
+    var basketball = [Quiz(image: UIImage(named: "basket.jpg"), title: "What basketball player are you?", description: "Find out which player you are.", answers: ["ball1", "2", "3", "4"], correct: 1),
+                      Quiz(image: UIImage(named: "basket.jpg"), title: "Do you know your teams?", description: "Test your knowledge!", answers: ["ball2", "2", "3", "4"], correct: 1)]
+    var videogames = [Quiz(image: UIImage(named: "video.jpeg"), title: "Which videogame character are you?", description: "Find out which player you are.", answers: ["game1", "2", "3", "4"], correct: 1),
+                      Quiz(image: UIImage(named: "video.jpeg"), title: "Do you know your videogames?", description: "Test your gaming knowledge!", answers: ["game2", "2", "3", "4"], correct: 1)]
     override func viewDidLoad() {
         super.viewDidLoad()
     }
