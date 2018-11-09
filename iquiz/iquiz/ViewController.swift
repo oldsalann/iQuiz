@@ -22,7 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         case "segueGoToQuestion":
             //let source = segue.source as! ViewController
             let destination = segue.destination as! QuestionViewController
-            destination.setIncomingText(incoming: quizData!)
+            destination.setIncoming(incoming: quizData!)
         default:
             NSLog("Unknown segue identifier -- " + segue.identifier!)
         }
@@ -39,7 +39,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         } else if (section == 2) {
             quizData = quizList.videogames[row]
         }
-        NSLog((quizData?.answers[0])!)
+        NSLog((quizData?.q1.answers[0])!)
         performSegue(withIdentifier: "segueGoToQuestion", sender: self)
     }
     
@@ -59,25 +59,38 @@ class Quiz {
     var image: UIImage?
     var title: String
     var description: String
-    var answers : [String]
-    var correct : Int32
+    var q1 : QuizQuestions
+    var q2 : QuizQuestions
+    var numCorrect : Int32
+    var done : Bool
     
-    init(image: UIImage?, title: String, description: String, answers: [String], correct: Int32) {
+    init(image: UIImage?, title: String, description: String, q1: QuizQuestions, q2: QuizQuestions, numCorrect: Int32, done: Bool) {
         self.image = image
         self.title = title
         self.description = description
+        self.q1 = q1
+        self.q2 = q2
+        self.numCorrect = numCorrect
+        self.done = done
+    }
+}
+
+class QuizQuestions {
+    var question : String
+    var answers : [String]
+    var correct : Int32
+    
+    init(question: String, answers: [String], correct: Int32) {
+        self.question = question
         self.answers = answers
         self.correct = correct
     }
 }
 
 class QuizList : UIViewController {
-    var soccer = [Quiz(image: UIImage(named: "soccer.jpeg"), title: "What soccer player are you?", description: "Find out which player you are.", answers: ["soc1", "2", "3", "4"], correct: 1),
-                  Quiz(image: UIImage(named: "soccer.jpeg"), title: "Do you know your teams?", description: "Test your knowledge!", answers: ["soc2", "2", "3", "4"], correct: 1)]
-    var basketball = [Quiz(image: UIImage(named: "basket.jpg"), title: "What basketball player are you?", description: "Find out which player you are.", answers: ["ball1", "2", "3", "4"], correct: 1),
-                      Quiz(image: UIImage(named: "basket.jpg"), title: "Do you know your teams?", description: "Test your knowledge!", answers: ["ball2", "2", "3", "4"], correct: 1)]
-    var videogames = [Quiz(image: UIImage(named: "video.jpeg"), title: "Which videogame character are you?", description: "Find out which player you are.", answers: ["game1", "2", "3", "4"], correct: 1),
-                      Quiz(image: UIImage(named: "video.jpeg"), title: "Do you know your videogames?", description: "Test your gaming knowledge!", answers: ["game2", "2", "3", "4"], correct: 1)]
+    var soccer = [Quiz(image: UIImage(named: "soccer.jpeg"), title: "Soccer History", description: "Do you know your soccer history?", q1: QuizQuestions(question: "Which national team has won the most World Cups?", answers: ["Brazil", "Italy", "Germany", "France"], correct: 0), q2: QuizQuestions(question: "Which national team won the first World Cup in 1930?", answers: ["Brazil", "Uruguay", "Argentina", "England"], correct: 1), numCorrect: 0, done: false)]
+    var basketball = [Quiz(image: UIImage(named: "basket.jpg"), title: "Basketball History", description: "Do you know your basketball history? Find out now!", q1: QuizQuestions(question: "Who has scored the most points in NBA history?", answers: ["Michael Jordan", "Kareem Abdul-Jabar", "Karl Malone", "Lebron James"], correct: 1), q2: QuizQuestions(question: "Which team has one the most NBA championships?", answers: ["Chicago Bulls", "Los Angeles Lakers", "Boston Celtics", "Golden State Warriors"], correct: 2), numCorrect: 0, done: false)]
+    var videogames = [Quiz(image: UIImage(named: "video.jpeg"), title: "Video Game History", description: "Test your video game history knowledge!", q1: QuizQuestions(question: "What was the first home console game, in 1972?", answers: ["Pong", "Tetris", "Asteroids", "Magnavox Odyssey"], correct: 3), q2: QuizQuestions(question: "What was the average age of video game players in 2011?", answers: ["16", "23", "44", "34"], correct: 3), numCorrect: 0, done: false)]
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -122,7 +135,7 @@ class QuizDataSource : NSObject, UITableViewDataSource, UITableViewDelegate {
             return "Basketball"
         }
         else if section == 2 {
-            return "Videogames"
+            return "Video games"
         }
         else {
             assert(false, "3 Sections Only")

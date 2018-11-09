@@ -8,19 +8,43 @@
 
 import UIKit
 
-var quiz : Quiz = Quiz(image: UIImage(named: "soccer.jpeg"), title: "", description: "", answers: ["", "", "", ""], correct: 1)
+var quiz : Quiz = Quiz(image: UIImage(named: "soccer.jpeg"), title: "", description: "", q1: QuizQuestions(question: "", answers: [], correct: 0), q2: QuizQuestions(question: "", answers: [], correct: 0), numCorrect: 0, done: false)
+
+var numAnswered = -1
 
 class QuestionViewController: UIViewController, UITableViewDelegate {
 
     
-    public func setIncomingText(incoming: Quiz) {
+    public func setIncoming(incoming: Quiz) {
         quiz = incoming
-        NSLog(incoming.title)
-        incomingText = incoming.title
+        incomingText = incoming.q1.question
+    }
+    public var incomingText: String = "Answer"
+
+    @IBAction func backTo(_ sender: Any) {
+        performSegue(withIdentifier: "segueBackHome", sender: self)
     }
     
+    @IBAction func btnAnswer(_ sender: Any) {
+        if (numAnswered > -1) {
+            performSegue(withIdentifier: "toAnswer", sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier! {
+        case "toAnswer":
+            let destination = segue.destination as! AnswerViewController
+            destination.setIncoming(incoming: quiz, numAnswer: numAnswered)
+        default:
+            NSLog("Unknown segue identifier -- " + segue.identifier!)
+        }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = indexPath.row
+        numAnswered = row // saying which answer was selected by num
+    }
     @IBOutlet weak var question: UILabel!
-    public var incomingText: String = "Answer"
     let dataSource = AnswerDataSource()
     @IBOutlet weak var tableView: UITableView!
     
@@ -36,21 +60,20 @@ class QuestionViewController: UIViewController, UITableViewDelegate {
 class AnswerDataSource : NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (quiz.answers.count)
+        return (quiz.q1.answers.count)
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell = tableView.dequeueReusableCell(withIdentifier: "NameTableIdentifier")
         if cell == nil {
-            NSLog("Creating new UITableViewCell")
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: "NameTableIdentifier")
         }
-        cell?.textLabel?.text = quiz.answers[indexPath.row]
+        cell?.textLabel?.text = quiz.q1.answers[indexPath.row]
     
         return cell!
     }
+    
     
 }
 
