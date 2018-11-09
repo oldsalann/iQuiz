@@ -15,6 +15,7 @@
 		BAB5458A218A954800D78DCA /* basket.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BAB54587218A954700D78DCA /* basket.jpg */; };
 		BAB5458B218A954800D78DCA /* video.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BAB54588218A954800D78DCA /* video.jpeg */; };
 		BAB5458C218A954800D78DCA /* soccer.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BAB54589218A954800D78DCA /* soccer.jpeg */; };
+		BAB5458E2190B27C00D78DCA /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB5458D2190B27C00D78DCA /* AppData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		BAB54587218A954700D78DCA /* basket.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = basket.jpg; sourceTree = "<group>"; };
 		BAB54588218A954800D78DCA /* video.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = video.jpeg; sourceTree = "<group>"; };
 		BAB54589218A954800D78DCA /* soccer.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = soccer.jpeg; sourceTree = "<group>"; };
+		BAB5458D2190B27C00D78DCA /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				BAB5455A21895CDC00D78DCA /* Assets.xcassets */,
 				BAB5455C21895CDC00D78DCA /* LaunchScreen.storyboard */,
 				BAB5455F21895CDC00D78DCA /* Info.plist */,
+				BAB5458D2190B27C00D78DCA /* AppData.swift */,
 			);
 			path = iquiz;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 			files = (
 				BAB5455621895CDB00D78DCA /* ViewController.swift in Sources */,
 				BAB5455421895CDB00D78DCA /* AppDelegate.swift in Sources */,
+				BAB5458E2190B27C00D78DCA /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
