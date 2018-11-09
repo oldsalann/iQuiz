@@ -132,6 +132,7 @@
                         <viewLayoutGuide key="safeArea" id="qyb-Iv-Pe2"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="7Dl-eG-kL7" appends="YES" id="LxQ-sg-cEY"/>
+                            <outletCollection property="gestureRecognizers" destination="4Ey-Nd-Hyr" appends="YES" id="5nd-eB-fWU"/>
                         </connections>
                     </view>
                     <connections>
@@ -142,9 +143,14 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N0m-YU-Lbc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="7Dl-eG-kL7">
+                <swipeGestureRecognizer direction="left" id="7Dl-eG-kL7">
                     <connections>
                         <action selector="swipeBack:" destination="402-3I-ahv" id="k4h-oD-pGx"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="4Ey-Nd-Hyr">
+                    <connections>
+                        <action selector="swipeSubmit:" destination="402-3I-ahv" id="4AF-O9-oZX"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -209,6 +215,7 @@
                         <viewLayoutGuide key="safeArea" id="No3-KV-WTv"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="q3q-0L-tKt" appends="YES" id="eWJ-aa-lmN"/>
+                            <outletCollection property="gestureRecognizers" destination="0v7-n5-y5z" appends="YES" id="bVe-A4-pRL"/>
                         </connections>
                     </view>
                     <connections>
@@ -222,9 +229,14 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xQe-FF-7po" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="q3q-0L-tKt">
+                <swipeGestureRecognizer direction="left" id="q3q-0L-tKt">
                     <connections>
                         <action selector="swipeBack:" destination="gGS-YJ-blM" id="vU5-8P-ehl"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="0v7-n5-y5z">
+                    <connections>
+                        <action selector="swipeNext:" destination="gGS-YJ-blM" id="q9b-DM-ysp"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -275,7 +287,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vSL-5R-Vnh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="ySc-Fp-rCR">
+                <swipeGestureRecognizer direction="left" id="ySc-Fp-rCR">
                     <connections>
                         <action selector="swipeLeft:" destination="SYK-eN-TRg" id="gvg-8C-C1q"/>
                     </connections>
@@ -285,7 +297,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="6t1-gR-h57"/>
         <segue reference="Dzm-2g-OfF"/>
-        <segue reference="Ylz-1U-zzs"/>
+        <segue reference="NP9-LP-akN"/>
     </inferredMetricsTieBreakers>
 </document>
