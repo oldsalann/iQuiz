@@ -24,6 +24,9 @@ class FinalViewController: UIViewController {
         lblNumCorrect.text = "Final Score: " + String(numCorrect) + " / 2"
     }
    
+    @IBAction func swipeLeft(_ sender: Any) {
+        performSegue(withIdentifier: "toStart", sender: self)
+    }
     @IBOutlet weak var lblNumCorrect: UILabel!
     @IBOutlet weak var lblCongrats: UILabel!
     

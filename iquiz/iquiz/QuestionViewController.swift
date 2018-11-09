@@ -25,6 +25,10 @@ class QuestionViewController: UIViewController, UITableViewDelegate {
         performSegue(withIdentifier: "segueBackHome", sender: self)
     }
     
+    @IBAction func swipeBack(_ sender: Any) {
+        performSegue(withIdentifier: "segueBackHome", sender: self)
+    }
+    
     @IBAction func btnAnswer(_ sender: Any) {
         if (numAnswered > -1) {
             performSegue(withIdentifier: "toAnswer", sender: self)

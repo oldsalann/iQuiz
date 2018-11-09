@@ -38,6 +38,9 @@ class AnswerViewController: UIViewController {
         performSegue(withIdentifier: "toHome", sender: self)
     }
     
+    @IBAction func swipeBack(_ sender: Any) {
+        performSegue(withIdentifier: "toHome", sender: self)
+    }
     @IBAction func btnNextQuestion(_ sender: Any) {
         if (!quiz.done) {
             performSegue(withIdentifier: "toNextQuestion", sender: self)

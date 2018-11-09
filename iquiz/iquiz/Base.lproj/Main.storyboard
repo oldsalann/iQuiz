@@ -128,7 +128,11 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="qyb-Iv-Pe2"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="7Dl-eG-kL7" appends="YES" id="LxQ-sg-cEY"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="question" destination="oIH-Wh-xfo" id="1CJ-mA-2yJ"/>
@@ -138,6 +142,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N0m-YU-Lbc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="7Dl-eG-kL7">
+                    <connections>
+                        <action selector="swipeBack:" destination="402-3I-ahv" id="k4h-oD-pGx"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="941.60000000000002" y="133.5832083958021"/>
         </scene>
@@ -196,7 +205,11 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="No3-KV-WTv"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="q3q-0L-tKt" appends="YES" id="eWJ-aa-lmN"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="lblAnswer" destination="tRs-so-jVa" id="YyQ-tq-v6J"/>
@@ -209,6 +222,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xQe-FF-7po" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="q3q-0L-tKt">
+                    <connections>
+                        <action selector="swipeBack:" destination="gGS-YJ-blM" id="vU5-8P-ehl"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1903.2" y="133.5832083958021"/>
         </scene>
@@ -244,7 +262,11 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="1Os-yD-yKh"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="ySc-Fp-rCR" appends="YES" id="hNK-pf-DLi"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="lblCongrats" destination="jYw-eG-Wc9" id="cie-op-3Od"/>
@@ -253,13 +275,17 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vSL-5R-Vnh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="ySc-Fp-rCR">
+                    <connections>
+                        <action selector="swipeLeft:" destination="SYK-eN-TRg" id="gvg-8C-C1q"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2965.5999999999999" y="133.5832083958021"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6t1-gR-h57"/>
         <segue reference="Dzm-2g-OfF"/>
-        <segue reference="HJr-DC-Vw3"/>
+        <segue reference="Ylz-1U-zzs"/>
     </inferredMetricsTieBreakers>
 </document>
