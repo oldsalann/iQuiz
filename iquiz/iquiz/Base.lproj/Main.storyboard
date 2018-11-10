@@ -267,8 +267,8 @@
                                     <action selector="btnReturn:" destination="SYK-eN-TRg" eventType="touchUpInside" id="eOp-Kn-2dT"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Congratualtions Text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="jYw-eG-Wc9">
-                                <rect key="frame" x="16" y="88" width="343" height="89"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congratualtions Text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="jYw-eG-Wc9">
+                                <rect key="frame" x="16" y="88" width="343" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -278,12 +278,12 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="1Os-yD-yKh" firstAttribute="trailing" secondItem="Vxd-1x-eps" secondAttribute="trailing" constant="16" id="2uv-fm-UWX"/>
-                            <constraint firstItem="jYw-eG-Wc9" firstAttribute="centerX" secondItem="1Os-yD-yKh" secondAttribute="centerX" id="J6U-sB-WOS"/>
+                            <constraint firstItem="jYw-eG-Wc9" firstAttribute="leading" secondItem="1Os-yD-yKh" secondAttribute="leading" constant="16" id="BSj-DQ-2mO"/>
                             <constraint firstItem="Vxd-1x-eps" firstAttribute="centerY" secondItem="1Os-yD-yKh" secondAttribute="centerY" id="SbG-fS-wJx"/>
-                            <constraint firstItem="jYw-eG-Wc9" firstAttribute="leading" secondItem="1Os-yD-yKh" secondAttribute="leading" constant="16" id="bsS-jZ-w0Z"/>
+                            <constraint firstItem="1Os-yD-yKh" firstAttribute="trailing" secondItem="jYw-eG-Wc9" secondAttribute="trailing" constant="16" id="dTN-Qx-klL"/>
                             <constraint firstItem="Ab4-vk-ObV" firstAttribute="top" secondItem="1Os-yD-yKh" secondAttribute="top" constant="16" id="gu1-Ub-tE7"/>
                             <constraint firstItem="Ab4-vk-ObV" firstAttribute="leading" secondItem="1Os-yD-yKh" secondAttribute="leading" constant="16" id="kOG-6Z-axF"/>
-                            <constraint firstItem="1Os-yD-yKh" firstAttribute="trailing" secondItem="jYw-eG-Wc9" secondAttribute="trailing" constant="16" id="sjl-lM-NPe"/>
+                            <constraint firstItem="jYw-eG-Wc9" firstAttribute="top" secondItem="Ab4-vk-ObV" secondAttribute="bottom" constant="22" id="ogo-4a-fmk"/>
                             <constraint firstItem="Vxd-1x-eps" firstAttribute="leading" secondItem="1Os-yD-yKh" secondAttribute="leading" constant="16" id="tjy-vT-IhP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Os-yD-yKh"/>
