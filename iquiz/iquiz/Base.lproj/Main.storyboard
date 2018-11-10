@@ -179,42 +179,47 @@
                                     <action selector="btnReturnBack:" destination="gGS-YJ-blM" eventType="touchUpInside" id="EL9-bM-pnO"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Correct/Incorrect" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="r5s-fC-5cq">
-                                <rect key="frame" x="16" y="76" width="343" height="72"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Question" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ugw-xf-bdM">
-                                <rect key="frame" x="133" y="156" width="109.5" height="72"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Correct Answer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="tRs-so-jVa">
-                                <rect key="frame" x="94" y="236" width="187" height="72"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Answer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="ATK-t1-Ueh">
-                                <rect key="frame" x="112" y="316" width="151" height="72"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="51" translatesAutoresizingMaskIntoConstraints="NO" id="1zJ-5Y-tof">
+                                <rect key="frame" x="16" y="216" width="343" height="255"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correct/Incorrect" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="r5s-fC-5cq">
+                                        <rect key="frame" x="79.5" y="0.0" width="184.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ugw-xf-bdM">
+                                        <rect key="frame" x="132" y="81" width="79" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correct Answer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="tRs-so-jVa">
+                                        <rect key="frame" x="104" y="156" width="135" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Answer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="ATK-t1-Ueh">
+                                        <rect key="frame" x="117" y="231" width="109" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="1zJ-5Y-tof" firstAttribute="centerX" secondItem="No3-KV-WTv" secondAttribute="centerX" id="4Kq-ga-ePr"/>
+                            <constraint firstItem="1zJ-5Y-tof" firstAttribute="leading" secondItem="No3-KV-WTv" secondAttribute="leading" constant="16" id="J7m-3V-wmo"/>
                             <constraint firstItem="Trd-sT-0Sz" firstAttribute="leading" secondItem="No3-KV-WTv" secondAttribute="leading" constant="16" id="Xhd-Wf-anx"/>
+                            <constraint firstItem="1zJ-5Y-tof" firstAttribute="centerY" secondItem="No3-KV-WTv" secondAttribute="centerY" id="aZ9-wH-ybB"/>
                             <constraint firstItem="No3-KV-WTv" firstAttribute="trailing" secondItem="xKm-D8-pVv" secondAttribute="trailing" constant="16" id="arc-E9-5Iu"/>
                             <constraint firstItem="Trd-sT-0Sz" firstAttribute="top" secondItem="No3-KV-WTv" secondAttribute="top" constant="16" id="fre-jQ-ijv"/>
                             <constraint firstItem="xKm-D8-pVv" firstAttribute="top" secondItem="No3-KV-WTv" secondAttribute="top" constant="16" id="h1a-XC-eBx"/>
+                            <constraint firstItem="No3-KV-WTv" firstAttribute="trailing" secondItem="1zJ-5Y-tof" secondAttribute="trailing" constant="16" id="nlT-f5-Ezv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="No3-KV-WTv"/>
                         <connections>
@@ -309,6 +314,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Dzm-2g-OfF"/>
-        <segue reference="NP9-LP-akN"/>
+        <segue reference="Ylz-1U-zzs"/>
     </inferredMetricsTieBreakers>
 </document>
