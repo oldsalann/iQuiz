@@ -8,12 +8,72 @@
 
 import UIKit
 
+class ImportJSON {
+    var title: String
+    var desc: String
+    var questions: Questions
+    struct Questions {
+        var text : String
+        var answers : [String]
+        var answer : Int32
+        
+        init(text: String, answers: [String], answer: Int32) {
+            self.text = text
+            self.answers = answers
+            self.answer = answer
+        }
+    }
+    init(title: String, desc: String, questions: Questions) {
+        self.title = title
+        self.desc = desc
+        self.questions = questions
+    }
+}
+
+
 class ViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        var arrJSON = [ImportJSON]()
+        let jsonURL = "http://tednewardsandbox.site44.com/questions.json"
+        guard let url = URL(string: jsonURL) else { return }
+        URLSession.shared.dataTask(with: url) {
+            (data, response, err) in
+            // check err
+            //print(err!)
+            // do stuff here
+            guard let data = data else { return }
+            //let dataAsString = String(data: data, encoding: .utf8)
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]]
+                for item in json! {
+                    let title = item["title"]
+                    let desc = item["desc"]
+                    if let questionsList = item["questions"] as? [[String:Any]] {
+                        for questions in questionsList  {
+                            let text = questions["text"]
+                            let answer = questions["answer"]
+                            let answers = questions["answers"]
+                            print(text!)
+                            print(answer!)
+                            print(answers!)
+                        }
+                    }
+                    print(title!)
+                    print(desc!)
+                    //arrJSON.append(item)
+                }
+            } catch {
+                print(error)
+            }
+            
+            //let jsonString = String(data: json, encoding: .utf8)
+            
+        }.resume()
         tableView.dataSource = dataSource
         tableView.delegate = self
     }
