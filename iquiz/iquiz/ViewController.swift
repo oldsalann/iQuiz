@@ -17,6 +17,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         tableView.dataSource = dataSource
         tableView.delegate = self
+        self.tableView.addSubview(self.refreshControl)
         QuizList.listOfQuizzesTest = []
 
         switch reachability.connection {
@@ -160,6 +161,20 @@ class ViewController: UIViewController, UITableViewDelegate {
             getJSON()
         }
     }
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(ViewController.handleRefresh(_:)),
+                                 for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.red
+        
+        return refreshControl
+    }()
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
 }
 
 // Classes and Structs
@@ -188,7 +203,6 @@ class QuizDataSource : NSObject, UITableViewDataSource, UITableViewDelegate {
     init(quizList : QuizList) {
         self.quizList = quizList
     }
-    
     
     let quizList : QuizList
     
