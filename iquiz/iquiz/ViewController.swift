@@ -33,6 +33,9 @@ class ViewController: UIViewController, UITableViewDelegate {
 
     }
     override func viewDidAppear(_ animated: Bool) {
+        checkWifiState()
+    }
+    func checkWifiState() {
         switch reachability.connection {
         case .wifi:
             print("On WiFi")
@@ -110,6 +113,10 @@ class ViewController: UIViewController, UITableViewDelegate {
                     
                 }
             } catch {
+                let uiAlert = UIAlertController(title: "Error", message: "Cannot download quizzes currently", preferredStyle: .alert)
+                uiAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(uiAlert, animated: true, completion: nil)
+                self.getLocal()
                 print(error)
             }
             DispatchQueue.main.async {
@@ -147,9 +154,11 @@ class ViewController: UIViewController, UITableViewDelegate {
     }
     func checkJSON(alertAction: UIAlertAction) {
         QuizList.listOfQuizzesTest = []
-        
-        print("Checking and downloading new JSON")
-        getJSON()
+        checkWifiState()
+        if (reachability.connection == .wifi) {
+            print("Checking and downloading new JSON")
+            getJSON()
+        }
     }
 }
 
