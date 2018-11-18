@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Reachability
 
 class ViewController: UIViewController, UITableViewDelegate {
+    let reachability = Reachability()!
     
     override func viewDidLoad() {
         // Do any additional setup after loading the view, typically from a nib.
@@ -17,6 +19,63 @@ class ViewController: UIViewController, UITableViewDelegate {
         tableView.delegate = self
         QuizList.listOfQuizzesTest = []
 
+        switch reachability.connection {
+            case .wifi:
+                print("Reachable via WiFi")
+                getJSON()
+            case .cellular:
+                print("Reachable via Cellular")
+                getJSON()
+            case .none:
+                print("Not Reachable")
+                getLocal()
+        }
+
+    }
+    func writeLocal(d: Data) {
+        guard let path = Bundle.main.path(forResource: "incoming", ofType: ".json") else  {return}
+        let urlLocal = URL(fileURLWithPath: path)
+        do {
+            try d.write(to: urlLocal)
+        } catch {
+            print(error)
+        }
+    }
+    func getLocal() {
+        //guard let path = Bundle.main.path(forResource: "incoming", ofType: ".json") else  {return}
+        //let urlLocal = URL(fileURLWithPath: path)
+        do {
+            if let data = UserDefaults.standard.data(forKey: "jsonData") {
+                let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]]
+                for item in json! {
+                    let title = item["title"] as! String
+                    let desc = item["desc"] as! String
+                    var text : String = ""
+                    var answer : String = ""
+                    var answers : [String] = []
+                    var qs = [QuizQuestions]()
+                    if let questionsList = item["questions"] as? [[String:Any]] {
+                        for questions in questionsList  {
+                            text = questions["text"] as! String
+                            answer = questions["answer"] as! String
+                            answers = questions["answers"] as! [String]
+                            let q = QuizQuestions(question: text, answers: answers, correct: (Int32(answer)! - 1))
+                            qs.append(q)
+                        }
+                    }
+                    let a = Quiz(image: UIImage(named: "soccer.jpeg"), title: title, description: desc, qs: qs, numCorrect: 0, done: false, curQ: 0)
+                    QuizList.quizAdd(item: a)
+                    
+                }
+            }
+        } catch {
+            print(error)
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    func getJSON() {
         let jsonURL = "http://tednewardsandbox.site44.com/questions.json"
         guard let url = URL(string: jsonURL) else { return }
         URLSession.shared.dataTask(with: url) {
@@ -25,8 +84,17 @@ class ViewController: UIViewController, UITableViewDelegate {
             // print(err!)
             // do stuff here
             guard let data = data else { return }
-            //let dataAsString = String(data: data, encoding: .utf8)
-            
+            //self.writeLocal(d: data)
+            /*
+            guard let path = Bundle.main.path(forResource: "incoming", ofType: ".json") else  {return}
+            let urlLocal = URL(fileURLWithPath: path)
+            do {
+                try data.write(to: urlLocal)
+            } catch {
+                print(error)
+            }
+             */
+            UserDefaults.standard.set(data , forKey: "jsonData")
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]]
                 for item in json! {
@@ -55,7 +123,7 @@ class ViewController: UIViewController, UITableViewDelegate {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-
+            
             //let jsonString = String(data: json, encoding: .utf8)
         }.resume()
     }

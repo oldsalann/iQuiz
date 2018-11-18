@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A68260400F0F74041E584D9 /* Pods_iquiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6143A147AA85F532B1B398D /* Pods_iquiz.framework */; };
+		BA2B34C621A0E74F009E66D6 /* incoming.json in Resources */ = {isa = PBXBuildFile; fileRef = BA2B34C521A0E74F009E66D6 /* incoming.json */; };
 		BA8A1A7A2195215B00F8488C /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8A1A792195215B00F8488C /* QuestionViewController.swift */; };
 		BA8A1A7C21955B4F00F8488C /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8A1A7B21955B4F00F8488C /* AnswerViewController.swift */; };
 		BA8A1A7E2196443B00F8488C /* FinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8A1A7D2196443B00F8488C /* FinalViewController.swift */; };
@@ -22,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		558267305F6392BBF862F920 /* Pods-iquiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iquiz.release.xcconfig"; path = "Pods/Target Support Files/Pods-iquiz/Pods-iquiz.release.xcconfig"; sourceTree = "<group>"; };
+		6215484BE604B584B478DFE6 /* Pods-iquiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iquiz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iquiz/Pods-iquiz.debug.xcconfig"; sourceTree = "<group>"; };
+		BA2B34C521A0E74F009E66D6 /* incoming.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = incoming.json; sourceTree = "<group>"; };
 		BA8A1A792195215B00F8488C /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		BA8A1A7B21955B4F00F8488C /* AnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
 		BA8A1A7D2196443B00F8488C /* FinalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +41,7 @@
 		BAB54588218A954800D78DCA /* video.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = video.jpeg; sourceTree = "<group>"; };
 		BAB54589218A954800D78DCA /* soccer.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = soccer.jpeg; sourceTree = "<group>"; };
 		BAB5458D2190B27C00D78DCA /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		C6143A147AA85F532B1B398D /* Pods_iquiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iquiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,17 +49,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A68260400F0F74041E584D9 /* Pods_iquiz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		85472C4D4800014F4B35D1D1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6215484BE604B584B478DFE6 /* Pods-iquiz.debug.xcconfig */,
+				558267305F6392BBF862F920 /* Pods-iquiz.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8FA61DB9D0024007A8C314E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C6143A147AA85F532B1B398D /* Pods_iquiz.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BAB5454721895CDB00D78DCA = {
 			isa = PBXGroup;
 			children = (
 				BAB5455221895CDB00D78DCA /* iquiz */,
 				BAB5455121895CDB00D78DCA /* Products */,
+				85472C4D4800014F4B35D1D1 /* Pods */,
+				8FA61DB9D0024007A8C314E1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +107,7 @@
 				BAB5455C21895CDC00D78DCA /* LaunchScreen.storyboard */,
 				BAB5455F21895CDC00D78DCA /* Info.plist */,
 				BAB5458D2190B27C00D78DCA /* AppData.swift */,
+				BA2B34C521A0E74F009E66D6 /* incoming.json */,
 			);
 			path = iquiz;
 			sourceTree = "<group>";
@@ -92,9 +119,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BAB5456221895CDC00D78DCA /* Build configuration list for PBXNativeTarget "iquiz" */;
 			buildPhases = (
+				23B6D358A606C419DF9F18B6 /* [CP] Check Pods Manifest.lock */,
 				BAB5454C21895CDB00D78DCA /* Sources */,
 				BAB5454D21895CDB00D78DCA /* Frameworks */,
 				BAB5454E21895CDB00D78DCA /* Resources */,
+				C380094C153B096BB67312DD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -146,6 +175,7 @@
 				BAB5455E21895CDC00D78DCA /* LaunchScreen.storyboard in Resources */,
 				BAB5455B21895CDC00D78DCA /* Assets.xcassets in Resources */,
 				BAB5455921895CDB00D78DCA /* Main.storyboard in Resources */,
+				BA2B34C621A0E74F009E66D6 /* incoming.json in Resources */,
 				BAB5458B218A954800D78DCA /* video.jpeg in Resources */,
 				BAB5458C218A954800D78DCA /* soccer.jpeg in Resources */,
 				BAB5458A218A954800D78DCA /* basket.jpg in Resources */,
@@ -153,6 +183,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		23B6D358A606C419DF9F18B6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iquiz-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C380094C153B096BB67312DD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-iquiz/Pods-iquiz-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iquiz/Pods-iquiz-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BAB5454C21895CDB00D78DCA /* Sources */ = {
@@ -308,11 +385,13 @@
 		};
 		BAB5456321895CDC00D78DCA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6215484BE604B584B478DFE6 /* Pods-iquiz.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JKMDW69Q4F;
 				INFOPLIST_FILE = iquiz/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -326,11 +405,13 @@
 		};
 		BAB5456421895CDC00D78DCA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 558267305F6392BBF862F920 /* Pods-iquiz.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JKMDW69Q4F;
 				INFOPLIST_FILE = iquiz/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
