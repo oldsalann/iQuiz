@@ -10,7 +10,7 @@ import UIKit
 
 class AnswerViewController: UIViewController {
 
-    var quiz : Quiz = Quiz(image: UIImage(named: "soccer.jpeg"), title: "", description: "", q1: QuizQuestions(question: "", answers: [], correct: 0), q2: QuizQuestions(question: "", answers: [], correct: 0), numCorrect: 0, done: false)
+    var quiz : Quiz = Quiz(image: UIImage(named: "soccer.jpeg"), title: "", description: "", qs: [QuizQuestions(question: "", answers: [], correct: 0), QuizQuestions(question: "", answers: [], correct: 0)], numCorrect: 0, done: false, curQ: 0)
     
     var numAnswered = -1
     
@@ -18,15 +18,15 @@ class AnswerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        lblQuestion.text = "Question: " + quiz.q1.question
-        if (quiz.q1.correct == numAnswered) {
+        lblQuestion.text = "Question: " + quiz.qs[Int(quiz.curQ)].question
+        if (quiz.qs[Int(quiz.curQ)].correct == numAnswered) {
             lblCorrect.text = "Correct!"
             quiz.numCorrect = quiz.numCorrect + 1
         } else {
             lblCorrect.text = "Incorrect..."
         }
-        lblAnswer.text = "Correct answer: " + quiz.q1.answers[Int(quiz.q1.correct)]
-        lblYourAnswer.text = "Your answer: " + quiz.q1.answers[numAnswered]
+        lblAnswer.text = "Correct answer: " + quiz.qs[Int(quiz.curQ)].answers[Int(quiz.qs[Int(quiz.curQ)].correct)]
+        lblYourAnswer.text = "Your answer: " + quiz.qs[Int(quiz.curQ)].answers[numAnswered]
     }
     
     @IBOutlet weak var lblYourAnswer: UILabel!
@@ -49,11 +49,13 @@ class AnswerViewController: UIViewController {
         performSegue(withIdentifier: "toHome", sender: self)
     }
     @IBAction func btnNextQuestion(_ sender: Any) {
-        if (!quiz.done) {
+        quiz.curQ = quiz.curQ + 1
+        if (Int(quiz.curQ) < quiz.qs.count) {
             performSegue(withIdentifier: "toNextQuestion", sender: self)
         } else {
             performSegue(withIdentifier: "toFinal", sender: self)
         }
+    
     }
     
     public func setIncoming(incoming: Quiz, numAnswer: Int) {
@@ -64,14 +66,11 @@ class AnswerViewController: UIViewController {
         switch segue.identifier! {
         case "toNextQuestion":
             let destination = segue.destination as! QuestionViewController
-            let tempq1 = quiz.q1 // cycling for next question
-            quiz.q1 = quiz.q2
-            quiz.q2 = tempq1
             destination.setIncoming(incoming: quiz)
-            quiz.done = true
         case "toFinal":
+            quiz.curQ = 0
             let destination = segue.destination as! FinalViewController
-            destination.setIncoming(incoming: Int(quiz.numCorrect))
+            destination.setIncoming(incoming: Int(quiz.numCorrect), qsSize: quiz.qs.count)
         default:
             NSLog("Unknown segue identifier -- " + segue.identifier!)
         }

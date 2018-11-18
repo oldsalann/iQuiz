@@ -8,7 +8,7 @@
 
 import UIKit
 
-var quiz : Quiz = Quiz(image: UIImage(named: "soccer.jpeg"), title: "", description: "", q1: QuizQuestions(question: "", answers: [], correct: 0), q2: QuizQuestions(question: "", answers: [], correct: 0), numCorrect: 0, done: false)
+var quiz : Quiz = Quiz(image: UIImage(named: "soccer.jpeg"), title: "", description: "", qs: [QuizQuestions(question: "", answers: [], correct: 0), QuizQuestions(question: "", answers: [], correct: 0)], numCorrect: 0, done: false, curQ: 0)
 
 var numAnswered = -1
 
@@ -17,7 +17,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate {
     
     public func setIncoming(incoming: Quiz) {
         quiz = incoming
-        incomingText = incoming.q1.question
+        incomingText = incoming.qs[Int(quiz.curQ)].question
     }
     public var incomingText: String = "Answer"
 
@@ -70,7 +70,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate {
 class AnswerDataSource : NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (quiz.q1.answers.count)
+        return (quiz.qs[Int(quiz.curQ)].answers.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -79,7 +79,7 @@ class AnswerDataSource : NSObject, UITableViewDataSource, UITableViewDelegate {
         if cell == nil {
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: "NameTableIdentifier")
         }
-        cell?.textLabel?.text = quiz.q1.answers[indexPath.row]
+        cell?.textLabel?.text = quiz.qs[Int(quiz.curQ)].answers[indexPath.row]
     
         return cell!
     }

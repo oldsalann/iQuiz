@@ -11,17 +11,20 @@ import UIKit
 class FinalViewController: UIViewController {
     
     var numCorrect : Int = -1
+    var size : Int = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (numCorrect == 2) {
+        let percent = (Double(numCorrect) * 1.0) / (Double(size) * 1.0) * 100.00
+        
+        if (percent >= 90.0) {
             lblCongrats.text = "Perfect!"
-        } else if (numCorrect == 1) {
+        } else if (percent >= 50.0) {
             lblCongrats.text = "So close!"
-        } else if (numCorrect == 0){
+        } else {
             lblCongrats.text = "Yikes..."
         }
-        lblNumCorrect.text = "Final Score: " + String(numCorrect) + " / 2"
+        lblNumCorrect.text = "Final Score: " + String(numCorrect) + " / " + String(size)
     }
    
     @IBAction func swipeLeft(_ sender: Any) {
@@ -34,7 +37,8 @@ class FinalViewController: UIViewController {
         performSegue(withIdentifier: "toStart", sender: self)
     }
     
-    public func setIncoming(incoming: Int) {
+    public func setIncoming(incoming: Int, qsSize: Int) {
+        size = qsSize
         numCorrect = incoming
     }
     

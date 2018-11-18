@@ -8,20 +8,6 @@
 
 import UIKit
 
-struct QuizList {
-    var soccer = [Quiz(image: UIImage(named: "soccer.jpeg"), title: "Soccer History", description: "Do you know your soccer history?", q1: QuizQuestions(question: "Which national team has won the most World Cups?", answers: ["Brazil", "Italy", "Germany", "France"], correct: 0), q2: QuizQuestions(question: "Which national team won the first World Cup in 1930?", answers: ["Brazil", "Uruguay", "Argentina", "England"], correct: 1), numCorrect: 0, done: false)]
-    var basketball = [Quiz(image: UIImage(named: "basket.jpg"), title: "Basketball History", description: "Do you know your basketball history? Find out now!", q1: QuizQuestions(question: "Who has scored the most points in NBA history?", answers: ["Michael Jordan", "Kareem Abdul-Jabar", "Karl Malone", "Lebron James"], correct: 1), q2: QuizQuestions(question: "Which team has one the most NBA championships?", answers: ["Chicago Bulls", "Los Angeles Lakers", "Boston Celtics", "Golden State Warriors"], correct: 2), numCorrect: 0, done: false)]
-    var videogames = [Quiz(image: UIImage(named: "video.jpeg"), title: "Video Game History", description: "Test your video game history knowledge!", q1: QuizQuestions(question: "What was the first home console game, in 1972?", answers: ["Pong", "Tetris", "Asteroids", "Magnavox Odyssey"], correct: 3), q2: QuizQuestions(question: "What was the average age of video game players in 2011?", answers: ["16", "23", "44", "34"], correct: 3), numCorrect: 0, done: false)]
-    var listOfQuizzes = [Quiz(image: UIImage(named: "soccer.jpeg"), title: "Soccer History", description: "Do you know your soccer history?", q1: QuizQuestions(question: "Which national team has won the most World Cups?", answers: ["Brazil", "Italy", "Germany", "France"], correct: 0), q2: QuizQuestions(question: "Which national team won the first World Cup in 1930?", answers: ["Brazil", "Uruguay", "Argentina", "England"], correct: 1), numCorrect: 0, done: false),
-                                Quiz(image: UIImage(named: "basket.jpg"), title: "Basketball History", description: "Do you know your basketball history? Find out now!", q1: QuizQuestions(question: "Who has scored the most points in NBA history?", answers: ["Michael Jordan", "Kareem Abdul-Jabar", "Karl Malone", "Lebron James"], correct: 1), q2: QuizQuestions(question: "Which team has one the most NBA championships?", answers: ["Chicago Bulls", "Los Angeles Lakers", "Boston Celtics", "Golden State Warriors"], correct: 2), numCorrect: 0, done: false),
-                                Quiz(image: UIImage(named: "video.jpeg"), title: "Video Game History", description: "Test your video game history knowledge!", q1: QuizQuestions(question: "What was the first home console game, in 1972?", answers: ["Pong", "Tetris", "Asteroids", "Magnavox Odyssey"], correct: 3), q2: QuizQuestions(question: "What was the average age of video game players in 2011?", answers: ["16", "23", "44", "34"], correct: 3), numCorrect: 0, done: false)]
-    static var listOfQuizzesTest = [Quiz(image: UIImage(named: "soccer.jpeg"), title: "Soccer History", description: "Do you know your soccer history?", q1: QuizQuestions(question: "Which national team has won the most World Cups?", answers: ["Brazil", "Italy", "Germany", "France"], correct: 0), q2: QuizQuestions(question: "Which national team won the first World Cup in 1930?", answers: ["Brazil", "Uruguay", "Argentina", "England"], correct: 1), numCorrect: 0, done: false)]
-    
-    static func quizAdd(item: Quiz){
-        listOfQuizzesTest.append(item)
-    }
-}
-
 class ViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
@@ -49,21 +35,19 @@ class ViewController: UIViewController, UITableViewDelegate {
                     var text : String = ""
                     var answer : String = ""
                     var answers : [String] = []
+                    var qs = [QuizQuestions]()
                     if let questionsList = item["questions"] as? [[String:Any]] {
                         for questions in questionsList  {
                             text = questions["text"] as! String
                             answer = questions["answer"] as! String
                             answers = questions["answers"] as! [String]
-                            print(text)
-                            print(answer)
-                            print(answers)
+                            let q = QuizQuestions(question: text, answers: answers, correct: (Int32(answer)! - 1))
+                            qs.append(q)
                         }
                     }
-                    let a = Quiz(image: UIImage(named: "soccer.jpeg"), title: title, description: desc, q1: QuizQuestions(question: text, answers: answers, correct: Int32(answer)!), q2: QuizQuestions(question: text, answers: answers, correct: Int32(answer)!), numCorrect: 0, done: false)
+                    let a = Quiz(image: UIImage(named: "soccer.jpeg"), title: title, description: desc, qs: qs, numCorrect: 0, done: false, curQ: 0)
                     QuizList.quizAdd(item: a)
-                    print(title)
-                    print(desc)
-                    //arrJSON.append(item)
+                    
                 }
             } catch {
                 print(error)
@@ -78,7 +62,6 @@ class ViewController: UIViewController, UITableViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier! {
         case "segueGoToQuestion":
-            //let source = segue.source as! ViewController
             let destination = segue.destination as! QuestionViewController
             destination.setIncoming(incoming: quizData!)
         default:
@@ -89,9 +72,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //let section = indexPath.section
         let row = indexPath.row
-        //let quizList = QuizList()
         quizData = QuizList.listOfQuizzesTest[row]
-        NSLog((quizData?.q1.answers[0])!)
         performSegue(withIdentifier: "segueGoToQuestion", sender: self)
     }
     
@@ -106,23 +87,25 @@ class ViewController: UIViewController, UITableViewDelegate {
     
 }
 
+// Classes and Structs
+
 class Quiz {
     var image: UIImage?
     var title: String
     var description: String
-    var q1 : QuizQuestions
-    var q2 : QuizQuestions
+    var qs : [QuizQuestions]
     var numCorrect : Int32
     var done : Bool
+    var curQ : Int32
     
-    init(image: UIImage?, title: String, description: String, q1: QuizQuestions, q2: QuizQuestions, numCorrect: Int32, done: Bool) {
+    init(image: UIImage?, title: String, description: String, qs: [QuizQuestions], numCorrect: Int32, done: Bool, curQ: Int32) {
         self.image = image
         self.title = title
         self.description = description
-        self.q1 = q1
-        self.q2 = q2
+        self.qs = qs
         self.numCorrect = numCorrect
         self.done = done
+        self.curQ = curQ
     }
 }
 
@@ -169,6 +152,14 @@ class ViewCell : UITableViewCell {
     @IBOutlet weak var lblDescription: UILabel!
 }
 
+
+struct QuizList {
+    static var listOfQuizzesTest = [Quiz]()
+    
+    static func quizAdd(item: Quiz){
+        listOfQuizzesTest.append(item)
+    }
+}
 
 /*
  class ImportJSON {
