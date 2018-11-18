@@ -32,7 +32,18 @@ class ViewController: UIViewController, UITableViewDelegate {
         }
 
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        switch reachability.connection {
+        case .wifi:
+            print("On WiFi")
+        case .cellular:
+            print("Reachable via Cellular")
+        case .none:
+            let uiAlert = UIAlertController(title: "Warning!", message: "You are currently not connected to the internet.", preferredStyle: .alert)
+            uiAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(uiAlert, animated: true, completion: nil)
+        }
+    }
     func getLocal() {
         do {
             if let data = UserDefaults.standard.data(forKey: "jsonData") {
@@ -136,6 +147,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     }
     func checkJSON(alertAction: UIAlertAction) {
         QuizList.listOfQuizzesTest = []
+        
         print("Checking and downloading new JSON")
         getJSON()
     }
