@@ -32,18 +32,8 @@ class ViewController: UIViewController, UITableViewDelegate {
         }
 
     }
-    func writeLocal(d: Data) {
-        guard let path = Bundle.main.path(forResource: "incoming", ofType: ".json") else  {return}
-        let urlLocal = URL(fileURLWithPath: path)
-        do {
-            try d.write(to: urlLocal)
-        } catch {
-            print(error)
-        }
-    }
+    
     func getLocal() {
-        //guard let path = Bundle.main.path(forResource: "incoming", ofType: ".json") else  {return}
-        //let urlLocal = URL(fileURLWithPath: path)
         do {
             if let data = UserDefaults.standard.data(forKey: "jsonData") {
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]]
@@ -84,16 +74,7 @@ class ViewController: UIViewController, UITableViewDelegate {
             // print(err!)
             // do stuff here
             guard let data = data else { return }
-            //self.writeLocal(d: data)
-            /*
-            guard let path = Bundle.main.path(forResource: "incoming", ofType: ".json") else  {return}
-            let urlLocal = URL(fileURLWithPath: path)
-            do {
-                try data.write(to: urlLocal)
-            } catch {
-                print(error)
-            }
-             */
+            
             UserDefaults.standard.set(data , forKey: "jsonData")
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]]
@@ -148,11 +129,16 @@ class ViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBAction func btnSettings(_ sender: Any) {
-        let uiAlert = UIAlertController(title: "Sorry", message: "Check back for settings!", preferredStyle: .alert)
-        uiAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let uiAlert = UIAlertController(title: "Settings", message: "Check for updated quizzes!", preferredStyle: .alert)
+        uiAlert.addAction(UIAlertAction(title: "Check Now", style: .default, handler: checkJSON))
+        uiAlert.addAction(UIAlertAction(title: "Exit", style: .default, handler: nil))
         self.present(uiAlert, animated: true, completion: nil)
     }
-    
+    func checkJSON(alertAction: UIAlertAction) {
+        QuizList.listOfQuizzesTest = []
+        print("Checking and downloading new JSON")
+        getJSON()
+    }
 }
 
 // Classes and Structs
